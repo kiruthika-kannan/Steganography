@@ -38,11 +38,11 @@ def preprocessing(image):
     size = (1080,720)
     image = cv2.resize(image,size)
     image = np.array(image,dtype = np.uint8)
-    plt.imshow(image)
-    plt.show()
     return image
     
-noOfReplaceBits = 4
+
+
+noOfReplaceBits = 3
 coverImage = preprocessing(cv2.imread('./images/img5.jpg'))
 payloadImage = preprocessing(cv2.imread('./images/img3.png'))
 stegoImage = embedding(coverImage,payloadImage,noOfReplaceBits,True)

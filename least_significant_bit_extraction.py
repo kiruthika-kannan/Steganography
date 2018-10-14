@@ -11,7 +11,6 @@ import cv2
 def extraction(stegoImage,noOfReplaceBits,displayImages = False):
     noOfImageBits = 8
     payload = np.mod(np.left_shift(stegoImage,noOfImageBits-noOfReplaceBits),2**noOfImageBits)
-    print(payload)
     coverMaskBin = np.array(np.concatenate((np.ones(noOfImageBits-noOfReplaceBits),np.zeros(noOfReplaceBits))),dtype = np.bool)
     coverMask = np.packbits(coverMaskBin)
     cover = np.bitwise_and(stegoImage,coverMask)
@@ -33,10 +32,8 @@ def preprocessing(image):
     size = (1080,720)
     image = cv2.resize(image,size)
     image = np.array(image,dtype = np.uint8)
-    plt.imshow(image)
-    plt.show()
     return image
     
-noOfReplaceBits = 4
+noOfReplaceBits = 3
 stegoImage = preprocessing(cv2.imread('./images/stegoImage.png'))
 coverImage,payloadImage = extraction(stegoImage,noOfReplaceBits,True)
