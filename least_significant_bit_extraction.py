@@ -35,5 +35,5 @@ def preprocessing(image):
     return image
     
 noOfReplaceBits = 3
-stegoImage = preprocessing(cv2.imread('./images/stegoImage.png'))
+stegoImage = preprocessing(cv2.imread('./images/stegoImage53.png'))
 coverImage,payloadImage = extraction(stegoImage,noOfReplaceBits,True)

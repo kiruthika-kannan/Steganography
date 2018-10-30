@@ -70,6 +70,6 @@ def quantize(d):
             return quantization[i,:]
     return None              
 
-stegoImage = preprocessing(cv2.imread('./images/stegoImage.png'))
+stegoImage = preprocessing(cv2.imread('./images/stegoImagePVD53.png'))
 coverImage,payloadImage = extraction(stegoImage,True)
 

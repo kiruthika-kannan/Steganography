@@ -46,4 +46,4 @@ noOfReplaceBits = 3
 coverImage = preprocessing(cv2.imread('./images/img5.jpg'))
 payloadImage = preprocessing(cv2.imread('./images/img3.png'))
 stegoImage = embedding(coverImage,payloadImage,noOfReplaceBits,True)
-cv2.imwrite('./images/stegoImage.png',stegoImage)
+cv2.imwrite('./images/stegoImage53.png',stegoImage)
