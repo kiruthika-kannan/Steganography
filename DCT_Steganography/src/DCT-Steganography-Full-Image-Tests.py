@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[21]:
+# In[77]:
 
 
 import numpy as np
@@ -18,10 +18,10 @@ import matplotlib.cm as cm
 
 # # MERGE
 
-# In[2]:
+# In[59]:
 
 
-img1 = cv2.imread('../input/Cameraman.png',cv2.IMREAD_GRAYSCALE)
+img1 = cv2.imread('../input/Room_512.jpeg',cv2.IMREAD_GRAYSCALE)
 row,col =img1.shape
 print('size of original image', row,col)
 
@@ -37,7 +37,7 @@ plt.imshow(img1)
 
 # computing dct of gray cover image
 
-# In[3]:
+# In[60]:
 
 
 #computing dct of gray cover
@@ -47,7 +47,7 @@ img_dct = dct(img_fl , 2 , norm='ortho')
 print(img_dct)
 
 
-# In[4]:
+# In[61]:
 
 
 img_sec1 = cv2.imread('../input/lena_re.jpg',cv2.IMREAD_GRAYSCALE)
@@ -71,7 +71,7 @@ plt.imshow(img_sec1)
 
 # Computing DCT of secret image
 
-# In[6]:
+# In[62]:
 
 
 img_sec_fl = np.float32(img_sec2)/255.0  # float conversion/scale
@@ -83,7 +83,7 @@ img_sec_dct = dct(img_sec_fl , 2 , norm='ortho')
 
 # Assigning weight to embed secret image in cover image
 
-# In[7]:
+# In[63]:
 
 
 weight = 0.5
@@ -94,7 +94,7 @@ img_dct_recreate[row-row1:row,col-col1:col] =   img_dct_recreate[row-row1:row,co
 print(img_dct_recreate.shape)
 
 
-# In[8]:
+# In[64]:
 
 
 #img_dct_inv = cv2.dct(img_dct_recreate,cv2.DCT_INVERSE)
@@ -103,30 +103,30 @@ img_dct_inv = idct(img_dct_recreate, 2 , norm='ortho')
 #print(img_dct_inv)
 
 
-# In[9]:
+# In[65]:
 
 
 img_inv_int =  np.uint8(img_dct_inv*255)
 print(img_inv_int)
 
 
-# In[10]:
+# In[66]:
 
 
-cv2.imwrite('../output/Stego_cameraman.jpg' , img_inv_int)
+cv2.imwrite('../output/Stego_Room.jpg' , img_inv_int)
 
 
 # # EXTRACT
 
-# In[11]:
+# In[68]:
 
 
-img_merge = cv2.imread('../output/Stego_cameraman.jpg',cv2.IMREAD_GRAYSCALE)
+img_merge = cv2.imread('../output/Stego_Room.jpg',cv2.IMREAD_GRAYSCALE)
 plt.title('Stego image')
 plt.imshow(img_merge)
 
 
-# In[12]:
+# In[69]:
 
 
 #Find DCT of stego image(combined with secret image)
@@ -135,7 +135,7 @@ img_merge_fl = np.float32(img_merge)/255.0  # float conversion/scale
 img_merge_dct = dct(img_merge_fl , 2 , norm='ortho') 
 
 
-# In[13]:
+# In[70]:
 
 
 dct_diff = img_merge_dct - img_dct
@@ -147,18 +147,18 @@ dct_diff_div_crop = dct_diff_div[row-row1:row,col-col1:col]
 print(dct_diff_div_crop.shape)
 
 
-# In[14]:
+# In[71]:
 
 
 img_ex_sec_inv = idct(dct_diff_div_crop, 2 , norm='ortho')
 print(img_ex_sec_inv)
 
 
-# In[15]:
+# In[72]:
 
 
 img_ex_sec_inv_int = np.uint8(img_ex_sec_inv*255)
-cv2.imwrite('../output/extract_secret_cameraman.jpg' , img_ex_sec_inv_int)
+cv2.imwrite('../output/extract_secret_Room.jpg' , img_ex_sec_inv_int)
 
 
 # $$MSE = \frac{\Sigma \Sigma(In - Out)^2}{MN}$$
@@ -166,14 +166,14 @@ cv2.imwrite('../output/extract_secret_cameraman.jpg' , img_ex_sec_inv_int)
 # 
 # M and N are the dimensions of the image
 
-# In[16]:
+# In[75]:
 
 
 mse =   ((img_sec1 - img_ex_sec_inv_int)**2).mean(axis=None)
 print('Mean square error between input secret image and extracted secret image= ', mse)
 
 
-# In[23]:
+# In[78]:
 
 
 def psnr(img1, img2):
