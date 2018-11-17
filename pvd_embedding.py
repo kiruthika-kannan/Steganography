@@ -85,4 +85,6 @@ def quantize(d):
 coverImage = preprocessing(cv2.imread('./images/img5.jpg'),(1080,720))
 payloadImage = preprocessing(cv2.imread('./images/img3.png'),(540,720))
 stegoImage = embedding(coverImage,payloadImage,True)
+
+cv2.imwrite('./images/coverImagePVD53.png',coverImage)
 cv2.imwrite('./images/stegoImagePVD53.png',stegoImage)
