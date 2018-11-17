@@ -24,7 +24,7 @@ def extraction(stegoImage,noOfReplaceBits,displayImages = False):
         ax.set_title(str(noOfImageBits-noOfReplaceBits)+' MSBs of Cover Image')
         ax = plt.subplot(1,3,3)
         ax.imshow(payload)
-        ax.set_title(str(noOfReplaceBits)+' MSBs of Cover Image')
+        ax.set_title(str(noOfReplaceBits)+' MSBs of Payload Image')
         plt.show();
     return cover,payload
 
