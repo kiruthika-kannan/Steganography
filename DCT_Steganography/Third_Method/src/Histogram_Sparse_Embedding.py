@@ -1,4 +1,4 @@
-
+#@Author-Ritu
 # coding: utf-8
 
 # In[1]:
@@ -54,7 +54,7 @@ print(z1, type(z1[0]))
 
 # In[5]:
 
-
+https://github.com/kiruthika-kannan/Steganography.git
 def euclidean(pixel1, pixel2):
     '''calculate the euclidean distance
     input: numpy.arrays or lists
