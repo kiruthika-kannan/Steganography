@@ -87,7 +87,7 @@ z1 = np.empty(s_len , dtype = '<U10')
 # In[6]:
 
 
-#LSB substitution for sparse pixels with large euclidean distance
+#sparse pixels from histogram 
 def extraction(image):
     t =0
     distance = 0
