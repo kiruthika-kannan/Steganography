@@ -107,17 +107,7 @@ intensity_thresh_arr = np.array(intensity_thresh_list)
 print(type(intensity_thresh_arr))
 print('intensities with pixel count less than 200',intensity_thresh_arr) 
 
-
-# In[16]:
-
-
-# for i in range(0,rows):
-#      for j in range(0,cols):
-#         if img_copy[i,j] in thresholded_intensity:
-#             img_label[i,j] = 1
-            
-#print(img_label)            
-
+        
 
 # In[11]:
 
@@ -172,17 +162,7 @@ print(stego_image)
 cv2.imwrite("../output/sun_crop_stego.jpeg",stego_image)
 
 
-# In[38]:
 
-
-# img_stego = cv2.imread('../output/Sparse_stego.tif',cv2.IMREAD_GRAYSCALE)
-# rows1 , cols1 = img_stego.shape
-# smod_ex = 0
-
-# def emd_extraction(image):
-    
-                
-#                 print('extracted value', abc)
     
     
 
