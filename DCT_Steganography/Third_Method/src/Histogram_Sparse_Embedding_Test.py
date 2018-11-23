@@ -106,7 +106,7 @@ Example:
 #thresh = 300#no of pixels
 thresh = 2
 thresholded_freq_arr  = [val for val in t_hist if val < thresh ]
-print('frequencies with pixel counts less than 300',thresholded_freq_arr)
+print('frequencies with pixel counts less than 2',thresholded_freq_arr)
 
 #intensity list of sparse pixels
 intensity_thresh_list = list()
@@ -117,24 +117,12 @@ for i in range(0, len(t_hist)):
 
 intensity_thresh_arr = np.array(intensity_thresh_list)
 print(type(intensity_thresh_arr))
-print('intensities with pixel count less than 300',intensity_thresh_arr) 
+print('intensities with pixel count less than 2',intensity_thresh_arr) 
 
 
-# In[16]:
 
 
-# for i in range(0,rows):
-#      for j in range(0,cols):
-#         if img_copy[i,j] in thresholded_intensity:
-#             img_label[i,j] = 1
-            
-#print(img_label)            
-
-
-# In[15]:
-
-
-#LSB substitution for sparse pixels with large euclidean distance
+# sparse pixels from histogram
 def emd_embedding(image):
     t =0
     distance = 0
@@ -186,17 +174,6 @@ print(stego_image)
 cv2.imwrite("../output/Sparse_stego.tif",stego_image)
 
 
-# In[38]:
-
-
-# img_stego = cv2.imread('../output/Sparse_stego.tif',cv2.IMREAD_GRAYSCALE)
-# rows1 , cols1 = img_stego.shape
-# smod_ex = 0
-
-# def emd_extraction(image):
-    
-                
-#                 print('extracted value', abc)
     
     
 
