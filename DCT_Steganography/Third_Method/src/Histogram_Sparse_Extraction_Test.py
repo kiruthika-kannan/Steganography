@@ -1,4 +1,4 @@
-
+#@Author - Ritu
 # coding: utf-8
 
 # In[1]:
@@ -13,21 +13,6 @@ rows , cols = img_stego.shape
 img_stego_copy = img_stego.copy()
 # print(type(img), img.shape)
 
-# img_label = np.zeros((rows,cols), dtype = np.uint8)#array for labels
-# print(img_label.shape)
-
-# #print(img)
-
-
-# secret_text = ['conference' ]
-# asciival = []
-# asciival = [ord(ch) for word in secret_text for ch in word]
-
-# secret_arr = np.array(asciival)
-# print('ascii value of secret data', secret_arr)
-
-# print('length of secret data', len(secret_arr))
-# s_len= len(secret_arr)
 
 
 
@@ -108,7 +93,7 @@ z1 = np.empty(s_len , dtype = '<U10')
 # In[8]:
 
 
-#LSB substitution for sparse pixels with large euclidean distance
+# Sparse pixels with from Histogram
 def emd_extraction(image):
     t =0
     distance = 0
@@ -170,8 +155,4 @@ for x in range(0, s_len):
 print(secret_out)
 
 
-# In[15]:
-
-
-#print(int('' , 2))
 
