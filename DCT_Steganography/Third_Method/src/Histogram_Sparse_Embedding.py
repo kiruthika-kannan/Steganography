@@ -48,13 +48,6 @@ for x in range (0, s_len):
 print(z1, type(z1[0]))    
     
 
-# z1_a = np.array(z1)
-# print(z1_a ,type(z1_a))
-
-
-# In[5]:
-
-https://github.com/kiruthika-kannan/Steganography.git
 def euclidean(pixel1, pixel2):
     '''calculate the euclidean distance
     input: numpy.arrays or lists
@@ -129,7 +122,7 @@ print('intensities with pixel count less than 200',intensity_thresh_arr)
 # In[11]:
 
 
-#LSB substitution for sparse pixels with large euclidean distance
+# sparse pixels from Histogram
 def embedding(image):
     t =0
     distance = 0
