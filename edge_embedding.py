@@ -43,7 +43,7 @@ def embedding(coverImage,payloadImage,n,x,y,displayImages = False):
                         else:
                             status = status + 2**(m-1)
                             stegoImage[i,j+m,k] = lsbEmbed(coverImage[i,j+m,k],payloadImage[i,np.int64(j*(n-1)/n+m-1),k],y)
-                    stegoImage[i,j,k] = lsbEmbed(coverImage[i,j+m,k],status,n-1)
+                    stegoImage[i,j,k] = lsbEmbed(coverImage[i,j,k],status,n-1)
                         
     if(displayImages):
         plt.figure(figsize=(12, 8))

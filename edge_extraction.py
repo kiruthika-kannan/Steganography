@@ -23,6 +23,7 @@ def lsbExtract(stego,noOfLsbBits):
     coverMask = np.packbits(coverMaskBin)
     cover = np.bitwise_and(stego,coverMask)
     return cover,payload
+
 def getBit(number,position):
     return np.bitwise_and(np.right_shift(number,position-1),1)
     
