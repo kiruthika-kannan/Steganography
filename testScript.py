@@ -18,15 +18,15 @@ from edge_extraction import extraction as edgeExtract
 from bpcs_embedding import embedding as bpcsEmbed
 from bpcs_extraction import extraction as bpcsExtract
 
-c = '02'
-p = '01'
+c = '11'
+p = '10'
 coverImagePath = './input_images/image_'+c+'.png'
 payloadImagePath = './input_images/image_'+p+'.png'
-stegoImagePath = lambda method,c,p: './output_images/payload_'+method+'_'+c+'_'+p+'.png'
+stegoImagePath = lambda method,c,p: './output_images/stego_'+method+'_'+c+'_'+p+'.png'
 extractedCoverImagePath = lambda method,p: './output_images/cover_'+method+'_'+c+'.png'
 extractedPayloadImagePath = lambda method,p: './output_images/payload_'+method+'_'+p+'.png'
 
-methods = {'lsb','pvd','edge','bpcs'}
+methods = {'lsb','edge','bpcs'}
 for method in methods:
     print('Method: ', method)
     coverImage = cv2.imread(coverImagePath)
@@ -35,7 +35,7 @@ for method in methods:
     
     if method == 'lsb':
         payloadImage = preprocessing(payloadImage,size)
-        noOfReplaceBits = 4
+        noOfReplaceBits = 3
         stegoImage = lsbEmbed(coverImage,payloadImage,noOfReplaceBits,True)
         coverImage,payloadImage = lsbExtract(stegoImage,noOfReplaceBits,True)
         
@@ -48,7 +48,7 @@ for method in methods:
     elif method == 'edge':
         n = 3
         x = 2
-        y = 5
+        y = 4
         size[1] = np.int64(size[1]*(n-1)/n)
         payloadImage = preprocessing(payloadImage,size)
         stegoImage = edgeEmbed(coverImage,payloadImage,n,x,y,True)
@@ -56,8 +56,8 @@ for method in methods:
         
     elif method == 'bpcs':
         n = 8
-        x = 3
-        y = 7
+        x = 2
+        y = 4
         payloadImage = preprocessing(payloadImage,size)
         stegoImage = bpcsEmbed(coverImage,payloadImage,n,x,y,True)
         coverImage,payloadImage = bpcsExtract(stegoImage,n,x,y,True)
