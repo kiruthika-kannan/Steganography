@@ -35,7 +35,7 @@ for method in methods:
     
     if method == 'lsb':
         payloadImage = preprocessing(payloadImage,size)
-        noOfReplaceBits = 3
+        noOfReplaceBits = 4
         stegoImage = lsbEmbed(coverImage,payloadImage,noOfReplaceBits,True)
         coverImage,payloadImage = lsbExtract(stegoImage,noOfReplaceBits,True)
         
@@ -48,7 +48,7 @@ for method in methods:
     elif method == 'edge':
         n = 3
         x = 2
-        y = 4
+        y = 5
         size[1] = np.int64(size[1]*(n-1)/n)
         payloadImage = preprocessing(payloadImage,size)
         stegoImage = edgeEmbed(coverImage,payloadImage,n,x,y,True)
@@ -57,7 +57,7 @@ for method in methods:
     elif method == 'bpcs':
         n = 8
         x = 3
-        y = 6
+        y = 7
         payloadImage = preprocessing(payloadImage,size)
         stegoImage = bpcsEmbed(coverImage,payloadImage,n,x,y,True)
         coverImage,payloadImage = bpcsExtract(stegoImage,n,x,y,True)
