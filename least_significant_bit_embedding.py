@@ -7,6 +7,8 @@ Created on Sun Oct 14 10:37:13 2018
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
+from utils import preprocessing, evaluate
+
 def embedding(coverImage,payloadImage,noOfReplaceBits,displayImages = False):
     noOfImageBits = 8
     payload = np.right_shift(payloadImage,(noOfImageBits-noOfReplaceBits))
@@ -34,16 +36,11 @@ def embedding(coverImage,payloadImage,noOfReplaceBits,displayImages = False):
         plt.show();
     return stegoImage
 
-def preprocessing(image):
-    size = (1080,720)
-    image = cv2.resize(image,size)
-    image = np.array(image,dtype = np.uint8)
-    return image
     
 
-
-noOfReplaceBits = 3
-coverImage = preprocessing(cv2.imread('./images/img5.jpg'))
-payloadImage = preprocessing(cv2.imread('./images/img3.png'))
-stegoImage = embedding(coverImage,payloadImage,noOfReplaceBits,True)
-cv2.imwrite('./images/stegoImage53.png',stegoImage)
+def test():
+    noOfReplaceBits = 3
+    coverImage = preprocessing(cv2.imread('./images/img5.jpg'))
+    payloadImage = preprocessing(cv2.imread('./images/img3.png'))
+    stegoImage = embedding(coverImage,payloadImage,noOfReplaceBits,True)
+    cv2.imwrite('./images/stegoImage53.png',stegoImage)

@@ -14,6 +14,8 @@ Created on Sun Oct 14 10:37:13 2018
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
+from utils import preprocessing, evaluate
+
 def lsbEmbed(cover,payload,noOfReplaceBits):
     noOfImageBits = 8
     payload = np.right_shift(payload,(noOfImageBits-noOfReplaceBits))
@@ -59,19 +61,14 @@ def embedding(coverImage,payloadImage,n,x,y,displayImages = False):
         plt.show();
     return stegoImage
 
-def preprocessing(image,size = (1080,720)):
-    image = cv2.resize(image,size)
-    image = np.array(image,dtype = np.uint8)
-    return image
-    
 
-
-n = 3
-x = 2
-y = 4
-size = (1080,720)
-coverImage = preprocessing(cv2.imread('./images/img5.jpg'),size)
-payloadImage = preprocessing(cv2.imread('./images/img3.png'),(np.int64(size[0]*(n-1)/n),size[1]))
-stegoImage = embedding(coverImage,payloadImage,n,x,y,True)
-cv2.imwrite('./images/coverImageEdge53.png',coverImage)
-cv2.imwrite('./images/stegoImageEdge53.png',stegoImage)
+def test():
+    n = 3
+    x = 2
+    y = 4
+    size = (1080,720)
+    coverImage = preprocessing(cv2.imread('./images/img5.jpg'),size)
+    payloadImage = preprocessing(cv2.imread('./images/img3.png'),(np.int64(size[0]*(n-1)/n),size[1]))
+    stegoImage = embedding(coverImage,payloadImage,n,x,y,True)
+    cv2.imwrite('./images/coverImageEdge53.png',coverImage)
+    cv2.imwrite('./images/stegoImageEdge53.png',stegoImage)

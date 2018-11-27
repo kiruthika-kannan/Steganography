@@ -16,16 +16,11 @@ Created on Fri Nov 16 01:48:25 2018
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
+from utils import preprocessing, evaluate
 def max_bpcs_complexity(ncols, nrows):
     return ((nrows-1)*ncols) + ((ncols-1)*nrows)
 
 def arr_bpcs_complexity(arr):
-    """
-    arr is a 2-d numpy array
-    returns the fraction of maximum bpcs_complexity in arr
-        where bpcs_complexity is total sum of bit changes
-        moving along each row and each column
-    """
     nrows, ncols = arr.shape
     max_complexity = max_bpcs_complexity(nrows, ncols)
     nbit_changes = lambda items, length: sum([items[i] ^ items[i-1] for i in range(1, length)])
@@ -37,22 +32,11 @@ def arr_bpcs_complexity(arr):
     return (k*1.0)/max_complexity
 
 def checkerboard(h, w):
-    """
-    h, w are int
-    returns a checkerboard array of shape == [h,w]
-    """
-
     re = np.r_[ np.int(w/2)*[0,1] + ([0] if w%2 else [])]
     ro = 1-re
     return np.row_stack(np.int(h/2)*(re,ro) + ((re,) if h%2 else ()))
 
 def conjugate(arr):
-    """
-    arr is a numpy array
-
-    conjugates arr so that its complexity, s, is 1-s
-    assert conjugate(conjugate(arr)) == arr
-    """
     wc = checkerboard(arr.shape[0], arr.shape[1]) # white pixel at origin
     bc = np.uint8(1-wc) # black pixel at origin
     return np.bitwise_xor(arr,bc)
@@ -102,7 +86,7 @@ def embedding(coverImage,payloadImage,n,x,y,displayImages = False):
     for k in range(0,size[2]):
         for i in range(0,size[0],n):
             if(i+n<=size[0]):
-                print(i,':',k)
+#                print(i,':',k)
                 for j in range(0,size[1],n):
     #                print(j)
                     if(j+n<=size[1]):
@@ -131,21 +115,17 @@ def embedding(coverImage,payloadImage,n,x,y,displayImages = False):
         plt.show();
     return stegoImage
 
-def preprocessing(image,size = (1080,720)):
-    image = cv2.resize(image,size)
-    image = np.array(image,dtype = np.uint8)
-    return image
+
+
+def test():
+    n = 8
+    x = 3
+    y = 6
     
-
-
-n = 8
-x = 3
-y = 6
-
-size = (1080,720)
-#size = (80,80)
-coverImage = preprocessing(cv2.imread('./images/img5.jpg'),size)
-payloadImage = preprocessing(cv2.imread('./images/img3.png'),size)
-stegoImage = embedding(coverImage,payloadImage,n,x,y,True)
-cv2.imwrite('./images/coverImageBPCS53.png',coverImage)
-cv2.imwrite('./images/stegoImageBPCS53.png',stegoImage)
+    size = (1080,720)
+    #size = (80,80)
+    coverImage = preprocessing(cv2.imread('./images/img5.jpg'),size)
+    payloadImage = preprocessing(cv2.imread('./images/img3.png'),size)
+    stegoImage = embedding(coverImage,payloadImage,n,x,y,True)
+    cv2.imwrite('./images/coverImageBPCS53.png',coverImage)
+    cv2.imwrite('./images/stegoImageBPCS53.png',stegoImage)

@@ -15,6 +15,7 @@ Created on Sun Oct 14 12:24:02 2018
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
+from utils import preprocessing, evaluate
 
 def lsbExtract(stego,noOfLsbBits):
     noOfImageBits = 8
@@ -61,14 +62,12 @@ def extraction(stegoImage,n,x,y,displayImages = False):
         plt.show();
     return cover,payload
 
-def preprocessing(image,size = (1080,720)):
-    image = cv2.resize(image,size)
-    image = np.array(image,dtype = np.uint8)
-    return image
+
     
-n = 3
-x = 2
-y = 4
-size = (1080,720)
-stegoImage = preprocessing(cv2.imread('./images/stegoImageEdge53.png'),size)
-coverImage,payloadImage = extraction(stegoImage,n,x,y,True)
+def test():
+    n = 3
+    x = 2
+    y = 4
+    size = (1080,720)
+    stegoImage = preprocessing(cv2.imread('./images/stegoImageEdge53.png'),size)
+    coverImage,payloadImage = extraction(stegoImage,n,x,y,True)

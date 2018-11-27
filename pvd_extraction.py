@@ -8,11 +8,16 @@ Created on Tue Oct 23 01:04:58 2018
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
+from utils import preprocessing, evaluate
+
 def extraction(stegoImage,displayImages = False):
     noOfImageBits = 8
     size = stegoImage.shape
+    payloadSize = list(size)
+    payloadSize[1] = np.int(payloadSize[1]/2)
     cover = np.zeros_like(stegoImage)
     payload = np.zeros_like(stegoImage)
+    payload = preprocessing(payload,tuple(payloadSize))
     #Calc range and uk,lk
     for i in range(0, size[0]):
         for j in range(0,size[1],2):
@@ -57,12 +62,7 @@ def extraction(stegoImage,displayImages = False):
         plt.show();
     return cover,payload
 
-def preprocessing(image):
-    size = (1080,720)
-    image = cv2.resize(image,size)
-    image = np.array(image,dtype = np.uint8)
-    return image
- 
+
 def quantize(d):    
     quantization = np.array([[0,7],[8,15],[16,31],[31,63],[64,127],[128,255]])    
     for i in range(0,quantization.shape[0]):
@@ -70,6 +70,7 @@ def quantize(d):
             return quantization[i,:]
     return None              
 
-stegoImage = preprocessing(cv2.imread('./images/stegoImagePVD53.png'))
-coverImage,payloadImage = extraction(stegoImage,True)
+def test():
+    stegoImage = preprocessing(cv2.imread('./images/stegoImagePVD53.png'))
+    coverImage,payloadImage = extraction(stegoImage,True)
 

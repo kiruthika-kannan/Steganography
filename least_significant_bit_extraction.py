@@ -8,6 +8,8 @@ Created on Sun Oct 14 12:24:02 2018
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
+from utils import preprocessing, evaluate
+
 def extraction(stegoImage,noOfReplaceBits,displayImages = False):
     noOfImageBits = 8
     payload = np.mod(np.left_shift(stegoImage,noOfImageBits-noOfReplaceBits),2**noOfImageBits)
@@ -28,12 +30,8 @@ def extraction(stegoImage,noOfReplaceBits,displayImages = False):
         plt.show();
     return cover,payload
 
-def preprocessing(image):
-    size = (1080,720)
-    image = cv2.resize(image,size)
-    image = np.array(image,dtype = np.uint8)
-    return image
     
-noOfReplaceBits = 3
-stegoImage = preprocessing(cv2.imread('./images/stegoImage53.png'))
-coverImage,payloadImage = extraction(stegoImage,noOfReplaceBits,True)
+def test():
+    noOfReplaceBits = 3
+    stegoImage = preprocessing(cv2.imread('./images/stegoImage53.png'))
+    coverImage,payloadImage = extraction(stegoImage,noOfReplaceBits,True)

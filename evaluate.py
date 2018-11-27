@@ -19,7 +19,7 @@ stegoImg = cv2.imread('./images/stegoImagePVD53.png')
 
 
 def MSE(a,b):
-    siz = coverImg.shape
+    siz = a.shape
     mse = np.sum(np.square(a-b))/np.product(siz)
     return mse
 def RMSE(a,b):
