@@ -8,8 +8,8 @@ Common Project report is uploaded in both branches
 For DCT method , if weight is changed in DCT-Steganography-Full-Image-Tests.ipynb , then change the output stego image name and also extracted secret image name accordingly.
 
 Below libraries should be installed to run the code:
-numpy
-math
-cv2(for opencv)
-matplotlib
+numpy ,
+math ,
+cv2(for opencv) ,
+matplotlib ,
 scipy.fftpack
