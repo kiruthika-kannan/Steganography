@@ -26,12 +26,11 @@ def lsbEmbed(cover,payload,noOfReplaceBits):
     return stego
     
     
-def embedding(coverImage,payloadImage,n,x,y,displayImages = False):
+def embedding(coverImage,payloadImage,n,y,x,displayImages = False):
     size = coverImage.shape
     stegoImage = np.zeros_like(coverImage)
     edgeImage = cv2.Canny(coverImage,100,200) #get edge image
-    plt.imshow(edgeImage)
-    plt.show()
+    
     for k in range(0,size[2]):
         for i in range(0,size[0]):
 #            print(i,'----------------------')
@@ -48,6 +47,8 @@ def embedding(coverImage,payloadImage,n,x,y,displayImages = False):
                     stegoImage[i,j,k] = lsbEmbed(coverImage[i,j,k],status,n-1)
                         
     if(displayImages):
+        plt.imshow(edgeImage)
+        plt.show()
         plt.figure(figsize=(12, 8))
         ax = plt.subplot(2,3,1)
         ax.imshow(coverImage)

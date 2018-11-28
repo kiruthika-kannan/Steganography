@@ -28,7 +28,7 @@ def lsbExtract(stego,noOfLsbBits):
 def getBit(number,position):
     return np.bitwise_and(np.right_shift(number,position-1),1)
     
-def extraction(stegoImage,n,x,y,displayImages = False):    
+def extraction(stegoImage,n,y,x,displayImages = False):    
     size = stegoImage.shape
     cover = np.zeros_like(stegoImage)
     payload = np.zeros_like(stegoImage)
@@ -68,6 +68,6 @@ def test():
     n = 3
     x = 2
     y = 4
-    size = (1080,720)
+    size = (720 ,1080)
     stegoImage = preprocessing(cv2.imread('./images/stegoImageEdge53.png'),size)
     coverImage,payloadImage = extraction(stegoImage,n,x,y,True)

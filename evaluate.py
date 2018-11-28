@@ -14,8 +14,8 @@ parser.add_argument("stego", help='path to stego image')
 args = parser.parse_args()
 coverPath =args.cover
 stegoPath = args.stego
-coverImg = cv2.imread('./images/coverImagePVD53.png')
-stegoImg = cv2.imread('./images/stegoImagePVD53.png')
+coverImg = cv2.imread(coverPath)
+stegoImg = cv2.imread(stegoPath)
 
 
 def MSE(a,b):

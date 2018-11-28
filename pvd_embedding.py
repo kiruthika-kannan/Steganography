@@ -48,15 +48,15 @@ def embedding(coverImage,payloadImage,displayImages = False):
             
 
     if(displayImages):
-        plt.figure(figsize=(12, 8))
-        ax = plt.subplot(1,3,1, aspect='equal')
-        ax.imshow(coverImage)
+        plt.figure(figsize=(10, 8))
+        ax = plt.subplot(1,3,1, aspect='auto')
+        ax.imshow(coverImage, aspect='auto')
         ax.set_title('Cover Image')
-        ax = plt.subplot(1,3,2, aspect='equal')
-        ax.imshow(payloadImage)
+        ax = plt.subplot(1,3,2, aspect='auto')
+        ax.imshow(payloadImage, aspect='auto')
         ax.set_title('Payload Image')
-        ax = plt.subplot(1,3,3)
-        ax.imshow(stegoImage)
+        ax = plt.subplot(1,3,3, aspect='auto')
+        ax.imshow(stegoImage, aspect='auto')
         ax.set_title('Stego-Image')
         plt.show();
     return stegoImage

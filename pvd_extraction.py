@@ -49,16 +49,16 @@ def extraction(stegoImage,displayImages = False):
                     payload[i,payload_j,k] = np.mod(np.left_shift(b,noOfImageBits-noOfReplaceBits),2**noOfImageBits)
             
     if(displayImages):
-        plt.figure(figsize=(12, 8))
+        plt.figure(figsize=(10, 8))
         ax = plt.subplot(1,3,1)
-        ax.imshow(stegoImage)
+        ax.imshow(stegoImage, aspect='auto')
         ax.set_title('Stego-Image')
-        ax = plt.subplot(1,3,2)
-        ax.imshow(cover)
-        ax.set_title(str(noOfImageBits-noOfReplaceBits)+' MSBs of Cover Image')
-        ax = plt.subplot(1,3,3)
-        ax.imshow(payload)
-        ax.set_title(str(noOfReplaceBits)+' MSBs of Cover Image')
+        ax = plt.subplot(1,3,2, aspect='auto')
+        ax.imshow(cover, aspect='auto')
+        ax.set_title('Cover Image')
+        ax = plt.subplot(1,3,3, aspect='auto')
+        ax.imshow(payload, aspect='auto')
+        ax.set_title('Payload Image')
         plt.show();
     return cover,payload
 

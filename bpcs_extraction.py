@@ -91,7 +91,7 @@ def extraction(stegoImage,n,x,y,displayImages = False):
                         cover[i,j,k],conjugateMap = lsbExtract(stegoImage[i,j,k],y) 
                         alphaStego = complexity(stegoImage[i:i+n,j:j+n,k])
                         noOfReplaceBits = x
-                        for m in range(x+1,y):
+                        for m in range(x+1,y+1):
                             if(alphaStego[m]>alphaThreshold):
                                 noOfReplaceBits = m
                         cover[i:i+n,j:j+n,k],payld = lsbExtract(stegoImage[i:i+n,j:j+n,k],noOfReplaceBits)
