@@ -1,12 +1,12 @@
 # Steganography
 
 
-dependancies:
-  python 3.5.6
-  opencv 3
-  numpy 
-  matplotlib
-  argparse
+dependancies:<br />
+  python 3.5.6<br />
+  opencv 3<br />
+  numpy <br />
+  matplotlib<br />
+  argparse<br />
 
 main run file testRunConsole
 
